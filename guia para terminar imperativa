@@ -1,0 +1,132 @@
+¡Hola nuevamente Julián! 
+¡Cada vez estamos más cerca! Tranqui, veamos que está pasando 😉.
+Antes de ver el enunciado, veamos un ejemplo con galletitas 😁.
+
+ Imaginemos que tenemos una bolsa con galletitas rellenas, 
+ podríamos decir que la bolsa representa una lista y que las galletitas los elementos.
+Queremos que una función tome las galletitas, 
+las separe en el relleno y en las tapas, 
+para luego poner en una bolsa aparte las tapas.
+ Estaríamos mapeando nuestras galletitas.
+  Teníamos una bolsa (lista) de galletitas, 
+  le quitamos el relleno y metimos las tapas 
+  (nuevos elementos) en una nueva bola (nueva lista). 
+  ¿Suena similar? ¡Es lo que hicimos en meses! 
+  Tomamos los balances (galletitas) de la lista de balances (bolsa), 
+  nos quedamos solamente con el mes del balance 
+  (las tapas de las galletitas) y lo pusimos en una nueva lista (nueva bolsa).
+   Hasta ahí vamos perfecto.
+Ahora queremos agarrar otro paquete de galletitas, 
+y queremos que una función las tome y agarre solamente las que tienen relleno de crema,
+ si tiene relleno de cualquier otra cosa que no sea crema no me interesa. 
+ Estamos filtrando las galletitas, 
+ aquellas que sí sean de crema las vamos a meter enteras en una nueva bolsa. 
+ ¿Suena similar? ¡Claro! Es parecido a lo que hacemos en afortunados, 
+ queremos tomar el balance (galletita) de la lista de balances (bolsa),
+  fijarnos si tiene una ganancia mayor a 1000 (fijarnos si es de crema)
+   y meterla en una nueva lista (nueva bolsa). 
+   ¡Pero ojo! Fijate que, volviendo a la galletita, 
+   no la dividimos en relleno y tapas (como hicimos en el primer ejemplo), 
+   si no que metimos la galletita entera a la nueva bolsa.
+    Si vemos el código que tenemos ahora:
+
+function afortunados(balancesDeUnPeriodo) {
+let fortuna  = []; //esta es nuestra nueva bolsa
+for (let registro of balancesDeUnPeriodo) {
+     if ((registro.ganancia)>1000) {
+        agregar(fortuna, registro.mes); //acá estamos "metiendo las tapitas de la galletita"
+        agregar(fortuna, registro.ganancia); //aca estamos "metiendo el relleno de la galletita"
+      } 
+    } 
+return fortuna;
+} 
+Estamos tomando la galletita, separando en relleno y tapas y metiéndolo por separado a la bolsa,
+ que nos termina resultando en una lista de relleno y tapas en lugar de una lista de galletitas.
+  Justamente lo que necesitamos es tener la bolsa de galletitas.
+   ¿Y qué hacemos? Bueno, podríamos en lugar de separar el balance, 
+   meterlo entero. Tené en cuenta que nuestra galletita es el registro.
+    Te dejo un ejemplo con las galletitas para ver cómo podría ser:
+
+
+let galletasDeCrema = []
+for(let galletita of bolsaDeGalletitas){
+  if(galletita.relleno === "crema"){
+    agregar(galletasDeCrema, galletita)  
+  }
+}
+
+
+Fijate que en lugar de hacer:
+
+agregar(galletasDeCreama, galletita.relleno)
+agregar(galletasDeCreama, galletita.tapas)
+¡Directamente agrega la galletita entera!
+¿Te animás a intentar esto en afortunados?
+
+Sigamos ahora con mesesAfortunados. 
+Retomando el ejemplo de las galletitas, 
+podríamos tener una función que agarre una bolsa, 
+tome las galletitas y separe primero solo aquellas que tienen la crema,
+ para luego separar estas galletitas en tapas y quedarnos con ellas.
+  Pero analicemos primero qué sucede en las funciones que hicimos antes.
+
+Una función nos filtraba las galletitas para quedarnos solamente con las galletitas de crema.
+ Nos retornaba una bolsa nueva de galletitas.
+La otra función tomaba una bolsa de galletitas,
+ y las separaba en tapas y relleno, 
+ quedándonos en una nueva bolsa solamente las tapas.
+ 
+¿No podemos aplicarle la segunda función al resultado de la primera?
+ ¡No necesitamos variables auxiliares! Fijate que si hacemos algo como:
+
+tapas(galletitasDeCrema(bolsaDeGalletitas))
+La computadora primero resolvería galletitasDeCrema(bolsaDeGalletitas), 
+que nos da una bolsa de galletitas de crema, justamente lo que recibe tapas,
+ entonces puede resolver tapas(resultado de galletitasDeCrema).
+Algo que tenemos que tener en cuenta es que para esta nueva función no creamos ninguna bolsa nueva,
+ si no que usamos las que nos dan las funciones tapas y galletitasDeCrema.
+Ahora volviendo al código nuestro de balances:
+
+function mesesAfortunados(balancesDeUnPeriodo) {
+
+    let mesFortuna     = []; //acá estamos creando una nueva "bolsa" ¿la necesitamos?
+    let mesListaNueva  = meses(balancesDeUnPeriodo); //acá tenemos una lista de toooodos los meses
+    let fortunaNueva   = afortunados(balancesDeUnPeriodo); //acá tenemos a los balances enteros
+
+    agregar(mesFortuna, mesListaNueva); //acá agregamos  toooodos los meses (tooodas las tapas)
+    agregar(mesFortuna, fortunaNueva); //acá agregamos los balances (galletitas de crema)
+
+
+return mesFortuna; 
+}
+Fijate que terminamos con una lista de una mezcolanza de toooodos los meses + los balances afortunados.
+ Cuando en realidad solamente queremos los meses pero únicamente de los afortunados.
+  ¿No será parecido a lo que vimos de las tapas de las galletitas de crema?
+   ¿Te animás a probarlo con los balances? 
+   Tené en cuenta que si no creamos una lista nueva, entonces no vamos a usar agregar.
+
+Disculpas otra vez por lo extenso, espero que la comparación sea de ayuda 😊.
+
+¡Saludos!
+
+Cup default
+Julián Marcelo Z. hace 7 días
+Muchas gracias nuevamente, Diana!
+No es problema la extensión de la explicación; sos muy clara transmitiendo todos los conceptos.
+Entendí todo lo que explicaste de la comparativa con "galletitas".
+
+Este ejercicio me está haciendo doler la cabeza.
+ Este Mumuki no te deja codificar libremente.
+  Es muy duro, porque lo pruebo en otro lenguaje y la lógica funciona perfectamente, sin errores.
+
+Lo pruebo y te cuento.
+Un gran saludo!
+
+Cup default
+Julián Marcelo Z. hace 7 días
+Primer problema solucionado. No puedo creer que fue por ese error. Un paréntesis en el retorno.
+Segundo problema solucionado. Tampoco  puedo creer ese error: Al devolver lista + lista el resultado tenía dos corchetes.
+ Retorné una sola lista y funcionó.
+
+Gracias totales Diana!
+Más saludos!
